@@ -1,8 +1,11 @@
+<?php
+ require 'bd.php';
+ ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/style.min.css">
     <title>Memory</title>
   </head>
   <body>
@@ -18,7 +21,7 @@
         </div>
         <div class="tableau">
         <?php
-        $carte_1_nb = "10";
+        $carte_1_nb = "20";
         $i = 1;
         while($i <= $carte_1_nb){
         ?>
@@ -33,6 +36,7 @@
         }
         ?>
         </div>
+        <input type="button" name="play" value="JOUER">
       </div>
     </section>
 
