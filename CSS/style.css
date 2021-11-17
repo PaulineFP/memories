@@ -65,6 +65,9 @@ body {
 
 .memory {
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .memory .container {
   max-width: 1200px;
@@ -82,6 +85,52 @@ body {
   line-height: 1.5;
   margin-bottom: 1em;
   text-shadow: 1.5px 1px black;
+}
+.memory .container .cadre {
+  background-color: rgba(196, 196, 196, 0.2);
+  padding: 1em;
+}
+.memory .container .txt {
+  color: #fff;
+  line-height: 1.5;
+  font-size: 18px;
+  text-shadow: 1.5px 1px black;
+}
+.memory .container .txt strong {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.memory .container .jeux .tableau {
+  margin: 2em auto;
+  background-color: #fff;
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.memory .container .jeux .tableau .carte_content {
+  border: solid 2px #DA2534;
+  background-color: #fff;
+  margin: 0.5em 0.25em;
+}
+.memory .container .jeux .tableau .carte_content button.carte {
+  height: 100px;
+  width: 90px;
+  background-image: url(../IMG/cerf.png);
+  background-position: center;
+  background-size: cover;
+}
+.memory .container input {
+  color: #fff;
+  background-color: #DA2534;
+  padding: 1em;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+  border: none;
+}
+.memory .container input:focus {
+  box-shadow: rgba(218, 37, 52, 0.4) 0px 8px 24px;
+  outline: none;
 }
 
 /*# sourceMappingURL=style.css.map */
