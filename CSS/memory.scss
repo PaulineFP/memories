@@ -7,10 +7,11 @@
     }
     .jeux {background: white;margin: 2em;padding: 1em;
       .tableau{ margin: 2em auto; background-color: $white; padding: 1em;display: grid;grid-template-columns: repeat(5, 1fr);
-      .carte_content{border: solid 2px $red;background-color: $white;margin: 0.5em 0.25em;
-          button.carte{height: 100px;width: 90px;background-image: url(../IMG/cerf.png);background-position: center;background-size: cover;border: none;
+      .carte_content{border: solid 2px $red;background-color: $white;margin: 0.5em 0.25em; display: flex; align-items: center; justify-content: center;
+          button {height: 100px;width: 90px;background-image: url(../IMG/cerf.png);background-position: center;background-size: cover;border: none;
           &:active {box-shadow: rgba(218, 37, 52,0.6) 0px 1px 24px;}
           }
+          img {height: 100px;}
         }
       }
     }
