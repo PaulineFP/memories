@@ -11,7 +11,7 @@
           button {height: 100px;width: 120px;background-image: url(../IMG/cerf.png);background-position: center;background-size: cover;border: none;
           &:active {box-shadow: rgba(218, 37, 52,0.6) 0px 1px 24px;}
           }
-          img {height: 100px;}
+          img {height: 100px;max-width: 100px;}
         }
       }
     }
