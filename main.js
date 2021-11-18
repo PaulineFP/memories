@@ -8,13 +8,14 @@ var tabJeu = [
   [0,0,0,0]
 ]
 
-var ResutabJeu = [
-  [7,5,8,3],
-  [2,9,10,5],
-  [8,6,1,7],
-  [10,4,6,2],
-  [9,3,8,1]
-]
+// var ResutabJeu = [
+//   [7,5,4,3],
+//   [2,9,10,5],
+//   [8,6,1,7],
+//   [10,4,6,2],
+//   [9,3,8,1]
+// ]
+var ResutabJeu = genereTableauAleatoire();
 
 var oldSelection=[];
 var nbAffiche = 0 ;
@@ -94,5 +95,28 @@ function verif(i,j){
       oldSelection = [i,j];
     }
   }
+}
 
+function genereTableauAleatoire(){
+  var tab = [];
+  var nbImagePosition=[0,0,0,0,0,0,0,0,0,0];
+
+  for (var i = 0 ; i < 5 ; i++){
+    var ligne = [];
+    for(var j = 0 ; j < 4 ; j++){
+      var fin = false;
+      while(!fin){
+        var randomImage = Math.floor(Math.random()*10);
+        if(nbImagePosition[randomImage] < 2){
+            ligne.push(randomImage+1);
+            nbImagePosition[randomImage]++;
+            fin = true;
+        }
+      }
+    }
+    tab.push(ligne);
+  }
+
+
+  return tab;
 }
