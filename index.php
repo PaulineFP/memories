@@ -22,9 +22,9 @@
 
         <div class="jeux">
           <div id="resultat"></div>
-
         </div>
-        <input type="button" name="play" value="JOUER">
+        <div id="bouton"></div>
+
       </div>
     </section>
 

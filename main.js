@@ -120,3 +120,13 @@ function genereTableauAleatoire(){
 
   return tab;
 }
+
+const divBouton = document.querySelector("#bouton");
+
+afficherBouton();
+
+function afficherBouton() {
+  var btn ="";
+  btn += "<input type='button' name='replay' value='REJOUER' onclick=''></input>";
+  divBouton.innerHTML = btn;
+}
