@@ -1,39 +1,44 @@
 const divResultat = document.querySelector("#resultat");
 
 var tabJeu = [
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0]
+  [-1,-1,-1,-1],
+  [-1,-1,-1,-1],
+  [-1,-1,-1,-1],
+  [-1,-1,-1,-1],
+  [-1,-1,-1,-1]
 ]
 
-// var ResutabJeu = [
-//   [7,5,4,3],
-//   [2,9,10,5],
-//   [8,6,1,7],
-//   [10,4,6,2],
-//   [9,3,8,1]
-// ]
 var ResutabJeu = genereTableauAleatoire();
 
 var oldSelection=[];
 var nbAffiche = 0 ;
 var ready = true;
 
+
+var cards = ['sapin.png', 'bonnet.png', 'boule.png', 'cadeau_jaune.png', 'cadeau.png', 'charlie.png', 'chaussette.png', 'cloche.png','pull.png','sucre_orge.png'];
+
+var outOfTime = false;
+var countdownStarted = false;
+var pairCount = 0;
+var win = false;
+var time = 60;
+
+
+
 afficherTableau();
 
 function afficherTableau(){
-  var txt ="Ton score est de:";
+  var txt ="";
+
   txt += "<div class ='tableau'>";
   for(var i=0; i< tabJeu.length; i++){
     txt += "<div>";
     for(var j=0; j < tabJeu[i].length; j++){
       txt += "<div class='carte_content'>"
-      if(tabJeu[i][j] === 0){
+      if(tabJeu[i][j] === -1){
         txt += "<button class='carte' onclick='verif("+i+","+j+")'></button>";
       } else {
-        txt += "<img src='"+getImage(tabJeu[i][j])+"' alt='image memory'>";
+        txt += "<img class='img' src='"+getImage(tabJeu[i][j])+"'>";
       }
       txt += "</div>"
     }
@@ -44,31 +49,7 @@ function afficherTableau(){
 }
 
 function getImage (valeur){
-  var imgTxt = "IMG/";
-  switch(valeur){
-    case 1: imgTxt += "sapin.png";
-    break;
-    case 2: imgTxt += "bonnet.png";
-    break;
-    case 3: imgTxt += "boule.png";
-    break;
-    case 4: imgTxt += "cadeau_jaune.png";
-    break;
-    case 5: imgTxt += "cadeau.png";
-    break;
-    case 6: imgTxt += "charlie.png";
-    break;
-    case 7: imgTxt += "chaussette.png";
-    break;
-    case 8: imgTxt += "cloche.png";
-    break;
-    case 9: imgTxt += "pull.png";
-    break;
-    case 10: imgTxt += "sucre_orge.png";
-    break;
-    default: console.log("cas non pris en compte");
-  }
-  return imgTxt;
+  return "IMG/" + cards[valeur] ;
 }
 
 function verif(i,j){
@@ -83,13 +64,30 @@ function verif(i,j){
       setTimeout(()=> {
         //verification
         if (tabJeu[i][j] !== ResutabJeu[oldSelection[0]][oldSelection[1]]) {
-          tabJeu[i][j] = 0;
-          tabJeu[oldSelection[0]][oldSelection[1]] = 0;
+          tabJeu[i][j] = -1;
+          tabJeu[oldSelection[0]][oldSelection[1]] = -1;
+        }else {
+          pairCount++;
+          if (pairCount == cards.length) {
+              win = true;
+              alert("you win :D"+time);
+              //php fetch (mdn fetch)
+              var form = new FormData();
+              form.append('score', time);
+                fetch("score.php", {
+                  method: "POST",
+                  body: form
+                })
+          }
         }
+
         afficherTableau();
         ready = true;
         nbAffiche = 0;
         oldSelection = [i,j];
+        if (!countdownStarted) {
+                   countdown();
+               }
       },500)
     } else {
       oldSelection = [i,j];
@@ -108,7 +106,7 @@ function genereTableauAleatoire(){
       while(!fin){
         var randomImage = Math.floor(Math.random()*10);
         if(nbImagePosition[randomImage] < 2){
-            ligne.push(randomImage+1);
+            ligne.push(randomImage);
             nbImagePosition[randomImage]++;
             fin = true;
         }
@@ -121,12 +119,41 @@ function genereTableauAleatoire(){
   return tab;
 }
 
+function countdown () {
+     countdownStarted = true;
+
+     var timeStart = new Date;
+     var timer = setInterval( function() {
+
+         var timeNow = new Date;
+         var difference = ( timeNow - timeStart ) / 1000; //calculates time difference if game isn't in focus
+
+         if (time > 0 && !win) {// if there is still time left and game isn't won, deduct time
+
+             time = Math.floor( 60 - difference );
+             document.getElementById('timer').innerHTML= time;
+             // $('.timer').text( time );
+         } else if (win) {//stop timer when game is won
+
+             clearInterval(timer);
+
+         } else {//stop timer when time is run out
+
+             outOfTime = true;
+             alert("you have run out of time :(");
+
+             clearInterval(timer);
+
+         }
+
+     }, 1000 );
+}
 const divBouton = document.querySelector("#bouton");
 
 afficherBouton();
 
 function afficherBouton() {
   var btn ="";
-  btn += "<input type='button' name='replay' value='REJOUER' onclick=''></input>";
+  btn += "<input type='button' name='replay' value='REJOUER' onclick='location.reload()'></input>";
   divBouton.innerHTML = btn;
 }

@@ -1,6 +1,4 @@
-<?php
- require 'bd.php';
- ?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -21,6 +19,7 @@
         </div>
 
         <div class="jeux">
+          <div id='timer'>60</div>
           <div id="resultat"></div>
         </div>
         <div id="bouton"></div>
