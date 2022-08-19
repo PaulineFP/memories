@@ -9,10 +9,10 @@
   <body>
     <section class="memory">
       <div class="container">
-        <div class="titre">Jeux de mémoire:</div>
+        <div class="titre">Jeu de mémoire:</div>
         <div class="cadre">
           <div class="txt">
-            <strong>Rêgles du jeux:</strong>
+            <strong>Rêgles du jeu:</strong>
             <br>
             Le principe de ce jeu de mémoire est de mémoriser les emplacements des cartes dans le jeu et de faire des paires de cartes en les retournant 2 par 2. Quand les 2 cartes sont identiques, c'est une paire! Vous remportez la paire et vous avez le droit de rejouer, sinon les cartes sont automatiquement cachées et vous devez faire un nouvel essai.
           </div>
